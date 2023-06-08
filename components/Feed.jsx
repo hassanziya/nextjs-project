@@ -26,7 +26,7 @@ const Feed = () => {
       const response = await fetch('/api/prompt', {
         method: 'GET',
         headers: {
-          'Cache-Control': 'no-store',
+          'Cache-Control': 'no-store, no-cache, must-revalidate',
         },
       });
       const data = await response.json();
