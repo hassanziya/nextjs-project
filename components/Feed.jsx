@@ -25,9 +25,7 @@ const Feed = () => {
     const fetchPosts = async () => {
       const response = await fetch('/api/prompt/all', {
         method: 'GET',
-        headers: {
-          'Cache-Control': 'no-store, no-cache, must-revalidate',
-        },
+        cache: 'no-store',
       });
       const data = await response.json();
       setposts(data);
