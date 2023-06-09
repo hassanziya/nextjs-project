@@ -6,13 +6,13 @@ export const GET = async (req) => {
     await connectToDB();
 
     const prompts = await Prompt.find({}).populate('creator');
-    const headers = {
-      'Content-Type': 'application/json',
-      'Cache-Control': 'no-store, no-cache, must-revalidate',
-      Expires: '0',
-      Pragma: 'no-cache',
-    };
-    return new Response(JSON.stringify(prompts), { status: 200, headers });
+    return new Response(JSON.stringify(prompts), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'cache-control': 'no-store, no-cache',
+      },
+    });
   } catch (error) {
     return new Response('Failed to fetch all prompts', { status: 500 });
   }
